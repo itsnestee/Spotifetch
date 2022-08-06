@@ -1,10 +1,18 @@
-body{
-    background-color: #121212;
-  
-    
+@font-face {
+    font-family: nFont;
+    src: url(/nFont.otf);
 }
 
-.wrapper{
+
+
+body {
+    background-color: #121212;
+    font-family: nFont, sans-serif;
+
+
+}
+
+.wrapper {
     padding: 50px;
     width: 25%;
     height: 300px;
@@ -12,15 +20,15 @@ body{
     border-radius: 10px;
 
 
-   
-    margin-left:35%;
+
+    margin-left: 35%;
     margin-top: 10%;
 
 }
 
 
 
-.pos-Container{
+.pos-Container {
     display: flex;
     flex-direction: column;
     row-gap: 25px;
@@ -29,11 +37,11 @@ body{
     /*border: 1px;
     border-style: solid;
     border-color: white;*/
-    
+
 }
 
 
-button{
+button {
     width: 40%;
     height: 40px;
     margin-left: 30%;
@@ -41,25 +49,26 @@ button{
     color: #faf9f6;
 
     background-color: #1DB954;
-    border: 1px solid  #faf9f6;
+    border: 1px solid #faf9f6;
     border-radius: 5px;
 
 }
 
-section{
+section {
     display: flex;
     flex-direction: column;
-    row-gap:10px;
+    row-gap: 10px;
 }
 
 
-h4{
-    margin:0px;
+h4 {
+    margin: 0px;
     color: #faf9f6;
 }
 
 
-h1{
+h1 {
+
     color: #faf9f6;
     font-size: 5em;
     margin-left: 35%;
