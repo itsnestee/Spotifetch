@@ -8,14 +8,14 @@ var app = express(); /* Create App */
 //Variable
 var port = 8888; /* port */
 
-app.set('view engine' , 'ejs');
+app.set('view engine', 'ejs');
 app.use(express.static('public'))
 
-/*Basic Routing server*/ 
-app.get('/',(req, res) => {
+/*Basic Routing server*/
+app.get('/', (req, res) => {
     console.log("HTML OUT");
 
-   // res.render("index"); //Response to browser
+    // res.render("index"); //Response to browser
 });
 
 

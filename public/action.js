@@ -1,0 +1,1 @@
+document.getElementById("spotiPanel").style.display = 'none';
