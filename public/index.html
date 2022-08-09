@@ -56,6 +56,17 @@
     <script>
         (function () {
             var stateKey = 'stateKey';
+
+            function getHashParams() {
+            var hashParam = {}; //hosts params
+            var e, r = /([^&;=]+)=?([^&;]*)/g; // for now e is nothing, r is all those letters
+            q = window.location.hash.substring(1); //gets the letters of the hash parameter in the url using the location object
+            while ( e = r.exec(q)) {  // while This function looks for letters in q matching to r and pass that info to var e
+            hashParams[e[1]] = decodeURIComponent(e[2]); //pass the decodedURI or the second index of E to the first index of E in the hashParams object
+            }
+            return hashParams; //return result
+
+}
             
         });
 
