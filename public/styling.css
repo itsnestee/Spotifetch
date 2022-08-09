@@ -30,10 +30,6 @@ body {
     row-gap: 25px;
     padding: 5px;
     height: 250px;
-    /*border: 1px;
-    border-style: solid;
-    border-color: white;*/
-
 }
 
 
@@ -73,13 +69,23 @@ h1 {
 
 h2 {
     color: #faf9f6c2;
-    font-size: 1em;
-    margin-left: 32%;
-    margin-top: 15%;
+    font-size: 1.2em;
     letter-spacing: 0.1em;
 }
 
-#btnLogin {
-    margin-left: 30%;
-    margin-top: 1%;
+#Login {
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+a {
+    color: #faf9f6;
+    background-color: #1DB954;
+    padding: 15px;
+    border: solid 1px #1DB954;
+    border-radius: 4px;
+    text-decoration: none;
 }

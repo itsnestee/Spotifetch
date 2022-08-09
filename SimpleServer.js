@@ -1,24 +1,45 @@
 //Dependencies
 var http = require("http"); /* Load HTTP Library*/
 var express = require("express"); /* Load Express Dependency */
+var querystring = require("node:querystring"); /* Load QueryString Parser/Stringyfier*/
+const { Console } = require("console");
 
-//App
-var app = express(); /* Create App */
+//my app credentials
+var cId = '';
+var cSec = '';
+var URI = '';
+var scopes = ''; //what do i need from user
 
-//Variable
-var port = 8888; /* port */
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'))
+var app = express(); ///Create App 
 
-/*Basic Routing server*/
-app.get('/', (req, res) => {
-    console.log("HTML OUT");
+var port = 8888; //port 
 
-    // res.render("index"); //Response to browser
+app.use(express.static('public')); //render web files to browser
+
+
+app.get('/login', (req, res) => { //request authorization to user aka client
+
+    res.redirect('https://accounts.spotify.com/authorize?' +
+        querystring.stringify({
+            response_type: 'code',
+            client_id: cId,
+            client_seecret: cSec,
+            scope: scopes,
+            redirect_uri: URI
+        }));
+
+    console.log("LoginFuncx");
 });
 
 
+app.get('/callback', (req, res) => {
+
+    res.redirect('/#' + res.send("In"));
+
+});
+
+console.log("Port Listening...");
 app.listen(port);
 
 

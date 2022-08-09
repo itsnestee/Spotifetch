@@ -11,37 +11,52 @@
 
 <body>
     <h1>SPOTIFETCH</h1>
-    <h2 id="titleLogin"> Simple web application that servers users genre, playlist and song.</h2>
-    <button type="button" id="btnLogin">Log In</button>
-    <div class="wrapper" id="spotiPanel">
-        <div class="pos-Container">
-            <section class="gen-Container">
-                <h4>Genre</h4>
-                <select id="Genre" name="Genres">
-                    <option value="0">Select Genre:</option>
-                </select>
-            </section>
+    <div id="userPromt">
+        <section id="Login">
+            <h2 id="titleLogin"> Simple web application that servers users genre, playlist and song.</h2>
+            <a id="logBtn" href="/login">Log In with Spotify</a>
+        </section>
+        <section id="LoggedIn">
+            <div class="wrapper" id="spotiPanel">
+                <div class="pos-Container">
+                    <section class="gen-Container">
+                        <h4>Genre</h4>
+                        <select id="Genre" name="Genres">
+                            <option value="0">Select Genre:</option>
+                        </select>
+                    </section>
 
-            <section class="pla-Container">
-                <h4>Playlist</h4>
-                <select id="Playlist" name="Playlists">
-                    <option value="0">Select Playlist:</option>
-                </select>
-            </section>
+                    <section class="pla-Container">
+                        <h4>Playlist</h4>
+                        <select id="Playlist" name="Playlists">
+                            <option value="0">Select Playlist:</option>
+                        </select>
+                    </section>
 
-            <section class="ser-Container">
-                <button>Search</button>
-            </section>
+                    <section class="ser-Container">
+                        <button>Search</button>
+                    </section>
 
-            <section class="son-Container">
-                <h4>Song</h4>
-                <select id="Song" name="Songs">
-                    <option value="0">Select Song:</option>
-                </select>
-            </section>
-        </div>
+                    <section class="son-Container">
+                        <h4>Song</h4>
+                        <select id="Song" name="Songs">
+                            <option value="0">Select Song:</option>
+                        </select>
+                    </section>
+                </div>
+            </div>
+        </section>
+        <section id="Error">
+            <h2 id="tError">
+                Authorization Error. Try again.
+            </h2>
+        </section>
+
     </div>
-    <script src="action.js"></script>
+    <script>
+        document.getElementById("LoggedIn").style.display = 'none';
+        document.getElementById("Error").style.display = 'none';
+    </script>
 
 </body>
 
