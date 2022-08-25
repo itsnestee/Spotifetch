@@ -73,14 +73,6 @@ h2 {
     letter-spacing: 0.1em;
 }
 
-#Login {
-    margin-top: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
 a {
     color: #faf9f6;
     background-color: #1DB954;

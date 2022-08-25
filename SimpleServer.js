@@ -12,7 +12,7 @@ var port = 8888; //port
 var scopes = ['user-read-private', 'user-read-email'],
     redirectUri = 'http://localhost:8888/callback/',
     clientId = '24ff0e4c598c4437947c77f5e3c80f70',
-    clientSec = '',
+    clientSec = '1c097b67a17a42f293c680d46c766036',
     state = 'some-state-of-my-choice';
 
 
@@ -60,7 +60,7 @@ app.get('/callback', (req, res) => {//if error give error if not get token
             );
 
 
-            res.sendFile('OK SERVER');
+            res.send('OK SERVER');
 
 
 
@@ -80,7 +80,7 @@ app.get('/callback', (req, res) => {//if error give error if not get token
 
 });
 // https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
-console.log(authorizeURL);
+//console.log(authorizeURL);
 
 
 console.log("Port Listening...");
