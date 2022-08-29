@@ -1,0 +1,26 @@
+{
+  "name": "spotifetch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "SimpleServer.js",
+  "scripts": {
+    "test": "nodemon SimpleServer.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsnestee/Spotifetch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itsnestee/Spotifetch/issues"
+  },
+  "homepage": "https://github.com/itsnestee/Spotifetch#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  },
+  "dependencies": {
+    "ejs": "^3.1.8"
+  }
+}

@@ -3,16 +3,16 @@ var SpotifyWebApi = require('spotify-web-api-node');//library instantiation
 var app = express(); // calling app
 
 
-app.use(express.static('public')); //rendering files to browser
-
+//app.use(express.static('public')); //rendering files to browser
+app.set('view engine', 'ejs');
 
 var port = 8888; //port 
 
 
 var scopes = ['user-read-private', 'user-read-email'],
     redirectUri = 'http://localhost:8888/callback/',
-    clientId = '24ff0e4c598c4437947c77f5e3c80f70',
-    clientSec = '1c097b67a17a42f293c680d46c766036',
+    clientId = '',
+    clientSec = '',
     state = 'some-state-of-my-choice';
 
 
@@ -24,7 +24,9 @@ var spotifyApi = new SpotifyWebApi({ // Setting credentials can be done in the w
 
 var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);// Create the authorization URL
 
-app.get('/login', (req, res) => { //Login request to user
+app.get('/', (req, res) => { //Login request to user
+    res.render('index');
+    res.send("mhasgdf");
     res.redirect(authorizeURL);
 })
 
@@ -59,9 +61,7 @@ app.get('/callback', (req, res) => {//if error give error if not get token
                 `Sucessfully retreived access token. Expires in ${expires_in} s.`
             );
 
-
-            res.send('OK SERVER');
-
+            console.log(data.body); //Important
 
 
             setInterval(async () => {
