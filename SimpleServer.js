@@ -1,12 +1,17 @@
 var express = require('express'); //web app instantiation
 var SpotifyWebApi = require('spotify-web-api-node');//library instantiation
 var app = express(); // calling app
-
+var fetch = require('fetch'); //used for async middlewares
 
 //app.use(express.static('public')); //rendering files to browser
+app.set('views', './views');
 app.set('view engine', 'ejs');
 
+app.use(express.static('public'));
+
 var port = 8888; //port 
+
+global.accessT;
 
 
 var scopes = ['user-read-private', 'user-read-email'],
@@ -24,9 +29,13 @@ var spotifyApi = new SpotifyWebApi({ // Setting credentials can be done in the w
 
 var authorizeURL = spotifyApi.createAuthorizeURL(scopes, state);// Create the authorization URL
 
-app.get('/', (req, res) => { //Login request to user
-    res.render('index');
-    res.send("mhasgdf");
+app.get('/', (req, res) => {
+    res.render('login'); //this routes to my initial page
+})
+
+app.get('/login', (req, res) => { //Login request to user
+
+
     res.redirect(authorizeURL);
 })
 
@@ -36,18 +45,21 @@ app.get('/callback', (req, res) => {//if error give error if not get token
     var state = req.query.state;
 
 
+
+
     if (error) {
         console.error('Yoo Error:', error);
         res.send('Callback error: ${error}');
         return;
     }
 
-    spotifyApi
+    spotifyApi //handles all the exangr between code <--> access token
         .authorizationCodeGrant(code)
         .then(data => {
             const access_token = data.body['access_token'];
             const refresh_token = data.body['refresh_token'];
             const expires_in = data.body['expires_in'];
+
 
 
 
@@ -61,11 +73,11 @@ app.get('/callback', (req, res) => {//if error give error if not get token
                 `Sucessfully retreived access token. Expires in ${expires_in} s.`
             );
 
-            console.log(data.body); //Important
+            console.log(data.body); //Important json containing acces token etc
 
 
-            setInterval(async () => {
-                const data = await spotifyApi.refreshAccessToken();
+            setInterval(async () => { //function that after 1H it activates
+                const data = await spotifyApi.refreshAccessToken(); //handles the refreshing of the token
                 const access_token = data.body['access_token'];
 
                 console.log('The access token has been refreshed!');
@@ -78,7 +90,17 @@ app.get('/callback', (req, res) => {//if error give error if not get token
             res.send(`Error getting Tokens: ${error}`);
         });
 
+    global.accessT = data.access_token; //access toke set in the global object
+    res.redirect('/dashboard');
+
 });
+
+
+app.get('/dashboard', async (req, res) => { //dasboard page after user authorisation
+    res.render('dashboard');
+});
+
+
 // https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
 //console.log(authorizeURL);
 
