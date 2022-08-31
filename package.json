@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "SimpleServer.js",
+  "type": "module",
   "scripts": {
     "test": "nodemon SimpleServer.js"
   },
@@ -11,7 +12,7 @@
     "url": "git+https://github.com/itsnestee/Spotifetch.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nestee",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/itsnestee/Spotifetch/issues"
