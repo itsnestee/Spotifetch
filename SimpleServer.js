@@ -14,6 +14,7 @@ var port = 8888; //port
 
 var scopes = ['user-read-private', 'user-read-email'],
     redirectUri = 'http://localhost:8888/callback/',
+    redirectUri = 'http://localhost:8888/dashboard/',
     clientId = '24ff0e4c598c4437947c77f5e3c80f70',
     clientSec = '1c097b67a17a42f293c680d46c766036',
     state = 'some-state-of-my-choice';
@@ -58,18 +59,9 @@ app.get('/callback', (req, res) => {//if error give error if not get token
             const refresh_token = data.body['refresh_token'];
             const expires_in = data.body['expires_in'];
 
-
-
             spotifyApi.setAccessToken(access_token);
             spotifyApi.setRefreshToken(refresh_token);
 
-            //console.log('access_token:', access_token);
-            // console.log('refresh_token:', refresh_token);
-
-            /* console.log(
-                 `Sucessfully retreived access token. Expires in ${expires_in} s.`
-             );
-             */
 
             setInterval(async () => { //function that after 1H it activates
                 const data = await spotifyApi.refreshAccessToken(); //handles the refreshing of the token
@@ -85,61 +77,38 @@ app.get('/callback', (req, res) => {//if error give error if not get token
             res.send(`Error getting Tokens: ${error}`);
         });
 
-    //access toke set in the global object
+
     res.redirect('/dashboard');
 
 });
 
+app.get('/dashboard', (req, res) => {
+    var error = req.query.error;
+    var coded = req.query.code;
+    var state = req.query.state;
 
-app.get('/dashboard', (req, res) => { //dasboard page after user authorisation
+    spotifyApi.authorizationCodeGrant(coded)
+        .then(data => {
+            const access_token = data.body['access_token'];
+            const refresh_token = data.body['refresh_token'];
+            const expires_in = data.body['expires_in'];
 
-    var coded = req.query.code; //WHY IS IT NOT WORKING HERE?
-    console.log(coded);
+            spotifyApi.setAccessToken(access_token);
+            spotifyApi.setRefreshToken(refresh_token);
 
-    /* spotifyApi.authorizationCodeGrant(coded)
-         .then(data => {
-             const access_token = data.body['access_token'];
-             const refresh_token = data.body['refresh_token'];
-             const expires_in = data.body['expires_in'];
- 
- 
- 
-             spotifyApi.setAccessToken(access_token);
-             spotifyApi.setRefreshToken(refresh_token);
- 
- 
- 
- 
-             setInterval(async () => { //function that after 1H it activates
-                 const data = await spotifyApi.refreshAccessToken(); //handles the refreshing of the token
-                 const access_token = data.body['access_token'];
- 
-                 console.log('The access token has been refreshed!');
- 
-                 spotifyApi.setAccessToken(access_token);
-             }, expires_in / 2 * 1000);
-         })
-         .then(data => {
-             const nestee = spotifyApi.getMe;
-             console.log(nestee);
-         })
-         
- 
-         .catch(error => {
-             console.error('Error getting Tokens:', error);
-             //res.send(`Error getting Tokens: ${error}`);
-         });
-         */
 
+            (async () => {
+                const nestee = await spotifyApi.getMe();
+                console.log(nestee.body['display_name']);
+
+            })().catch(e => {
+                console.error(e);
+            });
+
+        });
 
     res.render('dashboard');
 });
-
-
-
-// https://accounts.spotify.com:443/authorize?client_id=5fe01282e44241328a84e7c5cc169165&response_type=code&redirect_uri=https://example.com/callback&scope=user-read-private%20user-read-email&state=some-state-of-my-choice
-//console.log(authorizeURL);
-
 
 console.log("Port Listening...");
 app.listen(port);
