@@ -96,18 +96,22 @@ app.get('/dashboard', (req, res) => {
             spotifyApi.setAccessToken(access_token);
             spotifyApi.setRefreshToken(refresh_token);
 
-
             (async () => {
-                const nestee = await spotifyApi.getMe();
-                console.log(nestee.body['display_name']);
+
+                const nestee = await spotifyApi.getMe()
+
+                console.log(nestee);
+
+                res.render('dashboard', { user: nestee.body['display_name'] });
 
             })().catch(e => {
                 console.error(e);
             });
 
+
         });
 
-    res.render('dashboard');
+
 });
 
 console.log("Port Listening...");
