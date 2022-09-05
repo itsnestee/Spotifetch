@@ -2,21 +2,68 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="/public/styling.css" type="text/css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet " href="styling.css">
-    <link rel="server" href="/SimpleServer.js">
-    <script type="module" src="/SimpleServer.js"></script>
-    <title>Spotifetch</title>
+
 </head>
 
 <body>
+    <style>
+        body {
+            background-color: #121212;
+            font-family: nFont, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
     <h1>SPOTIFETCH</h1>
+    <style>
+        h1 {
+
+            color: #faf9f6;
+            font-size: 5em;
+
+        }
+    </style>
+
     <div id="userPromt">
         <section id="Login">
+            <style>
+                section {
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 10px;
+                    align-items: center;
+                    margin-top: 10%;
+                }
+            </style>
             <h2 id="titleLogin"> Simple web application that servers users genre, playlist and song.</h2>
+            <style>
+                h2 {
+                    color: #faf9f6c2;
+                    font-size: 1.2em;
+                    letter-spacing: 0.1em;
+
+                }
+            </style>
             <a id="logBtn" href="/login">Log In with Spotify</a>
+            <style>
+                a {
+                    color: #faf9f6;
+                    background-color: #1DB954;
+                    padding: 15px;
+                    border: solid 1px #1DB954;
+                    border-radius: 4px;
+                    text-decoration: none;
+                    display: inline;
+                    margin-left: 30%;
+                    margin-right: 30%;
+                    margin-top: 2%;
+                }
+            </style>
         </section>
     </div>
 </body>

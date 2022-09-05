@@ -5,12 +5,7 @@
 
 
 
-body {
-    background-color: #121212;
-    font-family: nFont, sans-serif;
 
-
-}
 
 #spotiPanel {
     padding: 50px;
@@ -46,11 +41,7 @@ button {
 
 }
 
-section {
-    display: flex;
-    flex-direction: column;
-    row-gap: 10px;
-}
+
 
 
 h4 {
@@ -59,25 +50,7 @@ h4 {
 }
 
 
-h1 {
 
-    color: #faf9f6;
-    font-size: 5em;
-    margin-left: 35%;
 
-}
 
-h2 {
-    color: #faf9f6c2;
-    font-size: 1.2em;
-    letter-spacing: 0.1em;
-}
 
-a {
-    color: #faf9f6;
-    background-color: #1DB954;
-    padding: 15px;
-    border: solid 1px #1DB954;
-    border-radius: 4px;
-    text-decoration: none;
-}

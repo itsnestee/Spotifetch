@@ -1,12 +1,16 @@
+
 import express from 'express'; //web app instantiation
 import SpotifyWebApi from 'spotify-web-api-node';
+//import path from 'path';
 var app = express(); // calling app
 
 
+//Not working for now, so directly styling on HTMLs
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
 app.use(express.static('public'));
+app.use(express.static('public'));
+//apply styling directly
 
 var port = 8888; //port 
 
@@ -42,9 +46,6 @@ app.get('/callback', (req, res) => {//if error give error if not get token
     var error = req.query.error;
     var code = req.query.code;
     var state = req.query.state;
-
-    global.code = code;
-
 
     if (error) {
         console.error('Yoo Error:', error);
@@ -87,6 +88,8 @@ app.get('/dashboard', (req, res) => {
     var coded = req.query.code;
     var state = req.query.state;
 
+
+
     spotifyApi.authorizationCodeGrant(coded)
         .then(data => {
             const access_token = data.body['access_token'];
@@ -101,8 +104,8 @@ app.get('/dashboard', (req, res) => {
                 const nestee = await spotifyApi.getMe()
 
                 console.log(nestee);
+                res.render('dashboard');
 
-                res.render('dashboard', { user: nestee.body['display_name'] });
 
             })().catch(e => {
                 console.error(e);
