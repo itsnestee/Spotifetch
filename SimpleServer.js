@@ -19,10 +19,10 @@ var port = 8888; //port
 
 
 var scopes = ['user-read-private', 'user-read-email'],
-    redirectUri = '';
-    redirectUri = '';
-    clientId = '24ff0e4c598c4437947c77f5e3c80f70',
-    clientSec = '1c097b67a17a42f293c680d46c766036',
+    redirectUri = 'http://localhost:8888/callback/',
+    redirectUri = 'http://localhost:8888/dashboard/',
+    clientId = '',
+    clientSec = '',
     state = 'some-state-of-my-choice';
 
 
