@@ -13,24 +13,111 @@
 </head>
 
 <body>
-    <h1>Ciao</h1>
     <style>
         @font-face {
             font-family: nFont;
             src: url(public/nFont.otf);
         }
 
-
-
         body {
             background-color: #121212;
             font-family: nFont, sans-serif;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            row-gap: 10%;
         }
+    </style>
+    <h1>Ciao <%= user %>
 
+    </h1>
+
+    <style>
         h1 {
             color: #faf9f6;
             font-size: 5em;
-            margin-left: 35%;
+        }
+    </style>
+
+    <div class="wrapper" id="spotiPanel">
+        <div class="pos-Container">
+            <section class="pla-Container">
+                <h5>Playlist</h5>
+                <select id="Playlist" name="Playlists">
+                    <option value="0">Select Playlist:</option>
+                    <option value="1">
+                        <%= genre1 %>
+                    </option>
+                    <option value="2">
+                        <%= genre2 %>
+                    </option>
+                </select>
+            </section>
+
+            <section class="ser-Container">
+                <button>Search</button>
+            </section>
+
+            <section class="son-Container">
+                <h5>Song</h5>
+                <select id="Song" name="Songs">
+                    <option value="0">Select Song:</option>
+                </select>
+            </section>
+        </div>
+    </div>
+    <style>
+        #spotiPanel {
+            padding: 50px;
+            width: 25%;
+            height: 300px;
+            background-color: #1DB954;
+            border-radius: 10px;
+            margin-top: 5%;
+        }
+
+        .pos-Container {
+            display: flex;
+            flex-direction: column;
+            row-gap: 25px;
+            padding: 5px;
+            height: 250px;
+            align-items: center;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 7%;
+            width: 80%;
+        }
+
+        select {
+            width: 80%;
+        }
+
+        .ser-Container {
+            width: 100%;
+        }
+
+
+
+        button {
+            width: 100%;
+            height: 40px;
+
+            color: #faf9f6;
+
+            background-color: #1DB954;
+            border: 1px solid #faf9f6;
+            border-radius: 5px;
+
+        }
+
+        h5 {
+            margin: 0px;
+            color: #faf9f6;
         }
     </style>
 </body>

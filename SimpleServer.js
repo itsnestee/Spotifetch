@@ -5,26 +5,28 @@ import SpotifyWebApi from 'spotify-web-api-node';
 var app = express(); // calling app
 
 
-//Not working for now, so directly styling on HTMLs
+
 app.set('views', './views');
 app.set('view engine', 'ejs');
+
+//Not working properly for now, so directly styling on HTMLs
 app.use(express.static('public'));
 app.use(express.static('public'));
-//apply styling directly
+
 
 var port = 8888; //port 
 
 
 
 var scopes = ['user-read-private', 'user-read-email'],
-    redirectUri = 'http://localhost:8888/callback/',
-    redirectUri = 'http://localhost:8888/dashboard/',
+    redirectUri = '';
+    redirectUri = '';
     clientId = '24ff0e4c598c4437947c77f5e3c80f70',
     clientSec = '1c097b67a17a42f293c680d46c766036',
     state = 'some-state-of-my-choice';
 
 
-var spotifyApi = new SpotifyWebApi({ // Setting credentials can be done in the wrapper's constructor, or using the API object's setters.
+var spotifyApi = new SpotifyWebApi({ // Setting credentials can be done in the wrapper's constructor, or using the API object setters.
     redirectUri: redirectUri,
     clientId: clientId,
     clientSecret: clientSec
@@ -101,10 +103,19 @@ app.get('/dashboard', (req, res) => {
 
             (async () => {
 
+                //requesting endpoints
                 const nestee = await spotifyApi.getMe()
+                const category = await spotifyApi.getUserPlaylists();
+                //Get tracks based on playlist after search button callback
 
-                console.log(nestee);
-                res.render('dashboard');
+                res.render('dashboard', {
+                    user: nestee.body.display_name,
+
+                    genre1: category.body.items.at(0).name,
+                    genre2: category.body.items.at(1).name,
+                });
+
+
 
 
             })().catch(e => {
